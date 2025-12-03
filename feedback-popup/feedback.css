@@ -1,0 +1,130 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", Arial, sans-serif;
+}
+
+body {
+  background: rgba(0,0,0,0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  position: relative;
+  width: 420px;
+  padding: 25px;
+  border-radius: 15px;
+  overflow: hidden;
+  color: #fff;
+  text-align: center;
+}
+
+/* Background photo with blur overlay */
+.container img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.45);
+  z-index: -1;
+}
+
+/* Close icon */
+.icon {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  font-size: 22px;
+  cursor: pointer;
+  color: white;
+}
+
+/* Title */
+.header {
+  margin-top: 40px;
+  font-size: 22px;
+  font-weight: 700;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+}
+
+/* Inputs + buttons (glass effect) */
+.name,
+.email,
+.comment {
+  width: 100%;
+  padding: 14px 20px;
+  margin-top: 18px;
+  border-radius: 30px;
+  border: none;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(4px);
+  color: #eaeaea;
+  text-align: left;
+  cursor: text;
+  font-size: 14px;
+}
+
+.comment {
+  height: 90px;
+  border-radius: 15px;
+}
+
+/* Rating text */
+.rate {
+  margin-top: 20px;
+  text-align: left;
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+/* Star rating */
+.rating {
+  direction: rtl;
+  unicode-bidi: bidi-override;
+  text-align: left;
+  margin-top: 10px;
+}
+
+.rating input {
+  display: none;
+}
+
+.rating label {
+  font-size: 28px;
+  cursor: pointer;
+  color: #444;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+.rating label:before {
+  content: "★";
+}
+
+.rating input:checked ~ label {
+  color: #ffd86b;
+}
+
+.rating label:hover,
+.rating label:hover ~ label {
+  color: #ffe08a;
+}
+
+/* Submit button */
+.feedback {
+  width: 200px;
+  padding: 14px;
+  margin-top: 22px;
+  border-radius: 30px;
+  border: none;
+  background: linear-gradient(180deg, #ffb77a, #b46d33);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+  
+}

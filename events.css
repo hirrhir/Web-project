@@ -1,0 +1,188 @@
+/* ============================
+   GLOBAL DARK THEME
+============================= */
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(180deg, #161616 0%, #1f1f1f 100%);
+    color: #eee;
+    font-family: "Inter", system-ui, -apple-system, Arial;
+    line-height: 1.5;
+}
+
+/* Page wrapper */
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px 40px;
+}
+
+/* ============================
+   TOP SECTION
+============================= */
+.header {
+    justify-content: center;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 700;
+    color: #d4b84a;
+    margin-top: 20px;
+    padding: 8px 18px;
+    display: inline-block;
+    border-radius: 999px;
+    background: rgba(212,184,74,0.1);
+    border: 1px solid rgba(212,184,74,0.25);
+}
+
+.titles {
+    text-align: center;
+    color: #ffd87a;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    margin-top: 14px;
+}
+
+.paragraph {
+    text-align: center;
+    color: #bdb2a7;
+    margin: 0;
+}
+
+/* Divider */
+.container > .titles:first-child {
+    margin-top: 40px;
+}
+
+/* ============================
+   EVENT CARDS
+============================= */
+.container > div {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 12px;
+    padding: 18px;
+    margin-top: 26px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+}
+
+/* Image on top */
+.container img {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    border-radius: 10px;
+    display: block;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+/* Price pill (first button inside each event card) */
+.container > div button:first-of-type {
+    position: relative;
+    margin-left: auto;
+    display: block;
+    margin-top: -48px;
+    margin-right: 10px;
+
+    background: linear-gradient(180deg, #d4b84a, #b78d24);
+    border: none;
+    padding: 8px 14px;
+    border-radius: 999px;
+    font-weight: 700;
+    color: #111;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+
+/* Event title */
+.semi-titles {
+    color: #ffd87a;
+    font-size: 18px;
+    font-weight: 700;
+    margin-top: 14px;
+}
+
+/* Schedule text */
+.schedule {
+    color: #bdb2a7;
+    font-size: 14px;
+    margin: 2px 0;
+}
+
+/* Description */
+.shorts {
+    margin-top: 12px;
+    color: #cfc7be;
+    font-size: 14px;
+}
+
+/* Reserve button */
+.container > div button:last-of-type {
+    margin-top: 14px;
+    background: linear-gradient(180deg, #d4b84a, #b78d24);
+    color: #111;
+    border: none;
+    font-weight: 700;
+    padding: 10px 16px;
+    border-radius: 999px;
+    cursor: pointer;
+    box-shadow: 0 8px 14px rgba(183,141,36,0.25);
+    transition: .2s ease;
+}
+
+.container > div button:last-of-type:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 20px rgba(183,141,36,0.3);
+}
+
+/* ============================
+   SPECIAL HIGHLIGHT BOX
+============================= */
+.container > div:last-of-type {
+    background: #f0e89f;
+    color: #222;
+    text-align: center;
+    font-weight: 600;
+}
+
+/* ============================
+   FOOTER
+============================= */
+.footer {
+    margin-top: 40px;
+    padding: 26px;
+    border-radius: 10px;
+    background: rgba(0,0,0,0.35);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+}
+
+/* Footer text */
+.footer p {
+    margin: 4px 0;
+    font-size: 13px;
+    color: #bdb2a7;
+}
+
+.footer p:first-child {
+    color: #fff;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+
+/* ============================
+   RESPONSIVE
+============================= */
+/*@media (max-width: 900px) {
+    .footer {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .footer {
+        grid-template-columns: 1fr;
+    }
+}

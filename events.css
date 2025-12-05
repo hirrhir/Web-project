@@ -1,188 +1,260 @@
 /* ============================
-   GLOBAL DARK THEME
-============================= */
-body {
-    margin: 0;
+   Ambrosia - Flexbox only CSS
+   Non-responsive, fixed-width layout
+   Targets your HTML structure exactly
+   (uses :has() to detect event-card divs)
+   ============================ */
+
+/* Basic reset */
+* { 
+    box-sizing: border-box; 
+    margin: 0; 
     padding: 0;
-    background: linear-gradient(180deg, #161616 0%, #1f1f1f 100%);
-    color: #eee;
-    font-family: "Inter", system-ui, -apple-system, Arial;
-    line-height: 1.5;
+ }
+
+html,body { 
+    height: 100%; 
 }
 
-/* Page wrapper */
+body {
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  background: linear-gradient(180deg,#161616 0%, #1f1f1f 100%);
+  color: #eee;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Fixed-width page container (non-responsive) */
 .container {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 20px 40px;
+  width: 1100px;        /* fixed width matching Figma */
+  margin: 36px auto;
+  padding: 0 18px 40px;
+  display: flex;
+  flex-wrap: wrap;      /* allow event cards to sit in two columns */
+  gap: 28px;
+  align-items: flex-start;
 }
 
-/* ============================
-   TOP SECTION
-============================= */
+/* Top area outside .container is left unchanged by CSS below,
+   but if you place top headings INSIDE .container we style them: */
+.container > .titles,
+.container > .paragraph {
+  width: 100%;
+}
+
+/* Badge / small header that sits above the title in your top area */
 .header {
-    justify-content: center;
-    text-align: center;
-    font-size: 14px;
-    font-weight: 700;
-    color: #d4b84a;
-    margin-top: 20px;
-    padding: 8px 18px;
-    display: inline-block;
-    border-radius: 999px;
-    background: rgba(212,184,74,0.1);
-    border: 1px solid rgba(212,184,74,0.25);
+  display: flex;
+  margin: 70px auto 18px;
+  padding: 8px 18px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 14px;
+  color: #d4b84a;
+  background: rgba(212,184,74,0.08);
+  border: 1px solid rgba(212,184,74,0.18);
+  text-align: center;
+  justify-content: center;
+  
+}
+button{
+    display:inline-block;
 }
 
+/* Page main title */
 .titles {
-    text-align: center;
-    color: #ffd87a;
-    font-size: 24px;
-    font-weight: 700;
-    margin-bottom: 8px;
-    margin-top: 14px;
+  width: 100%;
+  text-align: center;
+  color: #ffd87a;
+  font-size: 28px;
+  font-weight: 700;
+  margin-top: 8px;
+  margin-bottom: 8px;
 }
 
+
+/* Paragraphs under titles */
 .paragraph {
-    text-align: center;
-    color: #bdb2a7;
-    margin: 0;
+  width: 100%; 
+  text-align: center;
+  color: #bdb2a7;
+  margin: auto;
+  font-size: 15px;
+  
+  
 }
 
-/* Divider */
-.container > .titles:first-child {
-    margin-top: 40px;
+
+/* ============================
+   EVENT CARDS (only divs that contain an <img>)
+   Using :has(img) to select event-card containers
+   These will be two-column blocks using flexbox
+   ============================ */
+.container > div:has(img) {
+  width: calc(50% - 14px);  /* two columns (gap accounted) */
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.02));
+  border-radius: 12px;
+  padding: 14px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.55);
+  border: 1px solid rgba(255,255,255,0.03);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+}
+
+/* image styling inside an event card */
+.container > div:has(img) img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 10px;
+  display: block;
+}
+
+/* price pill: first button that appears after img */
+.container > div:has(img) button:first-of-type {
+  position: absolute;
+  right: 18px;
+  top: 18px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-weight: 800;
+  background: linear-gradient(180deg,#d4b84a,#b78d24);
+  border: none;
+  color: #111;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.45);
+  cursor: default;
+}
+
+/* Title, schedule and description */
+.container > div:has(img) .semi-titles {
+  color: #ffd87a;
+  font-size: 18px;
+  font-weight: 700;
+  margin-top: 6px;
+}
+
+.container > div:has(img) .schedule {
+  color: #bdb2a7;
+  font-size: 13px;
+  margin: 2px 0;
+}
+
+/* description block expands as needed */
+.container > div:has(img) .shorts {
+  color: #cfc7be;
+  font-size: 14px;
+  margin-top: 6px;
+  flex-grow: 1;
+}
+
+/* Reserve button is last button in each card */
+.container > div:has(img) button:last-of-type {
+  margin-top: 10px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: none;
+  font-weight: 700;
+  cursor: pointer;
+  align-self: flex-start;
+  background: linear-gradient(180deg,#d4b84a,#b78d24);
+  color: #111;
+  box-shadow: 0 8px 14px rgba(183,141,36,0.22);
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+.container > div:has(img) button:last-of-type:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 20px rgba(183,141,36,0.30);
 }
 
 /* ============================
-   EVENT CARDS
-============================= */
-.container > div {
-    background: rgba(255,255,255,0.02);
-    border: 1px solid rgba(255,255,255,0.05);
-    border-radius: 12px;
-    padding: 18px;
-    margin-top: 26px;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
-}
-
-/* Image on top */
-.container img {
-    width: 100%;
-    height: 500px;
-    object-fit: cover;
-    border-radius: 10px;
-    display: block;
-    margin-bottom: 10px;
-    position: relative;
-}
-
-/* Price pill (first button inside each event card) */
-.container > div button:first-of-type {
-    position: relative;
-    margin-left: auto;
-    display: block;
-    margin-top: -48px;
-    margin-right: 10px;
-
-    background: linear-gradient(180deg, #d4b84a, #b78d24);
-    border: none;
-    padding: 8px 14px;
-    border-radius: 999px;
-    font-weight: 700;
-    color: #111;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
-}
-
-/* Event title */
-.semi-titles {
-    color: #ffd87a;
-    font-size: 18px;
-    font-weight: 700;
-    margin-top: 14px;
-}
-
-/* Schedule text */
-.schedule {
-    color: #bdb2a7;
-    font-size: 14px;
-    margin: 2px 0;
-}
-
-/* Description */
-.shorts {
-    margin-top: 12px;
-    color: #cfc7be;
-    font-size: 14px;
-}
-
-/* Reserve button */
-.container > div button:last-of-type {
-    margin-top: 14px;
-    background: linear-gradient(180deg, #d4b84a, #b78d24);
-    color: #111;
-    border: none;
-    font-weight: 700;
-    padding: 10px 16px;
-    border-radius: 999px;
-    cursor: pointer;
-    box-shadow: 0 8px 14px rgba(183,141,36,0.25);
-    transition: .2s ease;
-}
-
-.container > div button:last-of-type:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 20px rgba(183,141,36,0.3);
+   Upcoming / Featured headings (if inside container)
+   Keep them full width */
+.container > h4.titles,
+.container > p.section-sub {
+  width: 100%;
 }
 
 /* ============================
-   SPECIAL HIGHLIGHT BOX
-============================= */
-.container > div:last-of-type {
-    background: #f0e89f;
-    color: #222;
-    text-align: center;
-    font-weight: 600;
+   Highlight / Private Events box
+   (a div inside container without an <img>)
+   We style any direct child div that does NOT have an img
+   by using :not(:has(img)) — modern selector
+   ============================ */
+.container > div:not(:has(img)) {
+  width: 100%;
+  background: #f0e89f;
+  color: #222;
+  border-radius: 10px;
+  padding: 22px;
+  font-weight: 700;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.22);
+  border: 1px solid rgba(0,0,0,0.06);
 }
 
 /* ============================
-   FOOTER
-============================= */
+   Footer (has class .footer in your HTML)
+   We style the .footer container and its columns using flexbox
+   ============================ */
 .footer {
-    margin-top: 40px;
-    padding: 26px;
-    border-radius: 10px;
-    background: rgba(0,0,0,0.35);
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 30px;
+  width: 1100px;
+  margin: 26px auto 60px;
+  padding: 22px;
+  background: rgba(0,0,0,0.36);
+  border-radius: 10px;
+  display: flex;
+  gap: 28px;
+  align-items: flex-start;
+  justify-content: space-between;
+  color: #bdb2a7;
+  border: 1px solid rgba(255,255,255,0.02);
 }
 
-/* Footer text */
-.footer p {
-    margin: 4px 0;
-    font-size: 13px;
-    color: #bdb2a7;
+/* footer inner columns are direct children of .footer and will flex equally */
+.footer > div {
+  flex: 1;
+  min-width: 0;
 }
 
-.footer p:first-child {
-    color: #fff;
-    font-weight: 700;
-    font-size: 18px;
+.footer > div p {
+  margin: 6px 0;
+  font-size: 13px;
+  color: #bdb2a7;
 }
 
+/* Footer brand first line stronger */
+.footer > div:first-child p:first-child {
+  color: #fff;
+  font-weight: 800;
+  font-size: 18px;
+  margin-bottom: 8px;
+}
 
 /* ============================
-   RESPONSIVE
-============================= */
-/*@media (max-width: 900px) {
-    .footer {
-        grid-template-columns: 1fr 1fr;
-    }
+   Misc small helpers
+   ============================ */
+.container > div:has(img) .meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  color:  #bdb2a7;
+  font-size: 13px;
 }
 
-@media (max-width: 600px) {
-    .footer {
-        grid-template-columns: 1fr;
-    }
-}
+/* Prevent responsiveness entirely (in case of tiny viewport) */
+html,body { min-width: 1100px; overflow-x: auto; }
+
+
+
+
+
+
+
+
+
+
+
+
+
